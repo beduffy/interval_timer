@@ -1,0 +1,33 @@
+import os
+import time
+
+def say_something(something):
+    cmd = 'espeak "{}"'.format(something)
+    print(cmd)
+    os.system(cmd)
+
+# say_something('hey dan how is your day going')
+
+num_exercises = 5
+num_sets = 3
+amount_of_time_pre_stretch = 20
+amount_of_time_stretch = 30
+amount_of_time_rest = 60 + 10
+
+exercise_names = ['bridge', 'middle splits', 'front splits left', 'front splits right', 'pancake']
+
+say_something('Starting in 10 seconds')
+time.sleep(10)
+
+for set_num in range(num_sets):
+    for exercise_num in range(num_exercises):
+        if exercise_num == 0 and set_num == 0:
+            continue
+
+        say_something('Exercise number {}. {} set number {}. Start pre stretch'.format(exercise_num, exercise_names[exercise_num], set_num))
+        time.sleep(amount_of_time_pre_stretch)
+        say_something('Stretch {} seconds'.format(amount_of_time_stretch))
+        time.sleep(amount_of_time_stretch)
+        say_something('Rest {} seconds'.format(amount_of_time_rest))
+        time.sleep(amount_of_time_rest)
+
