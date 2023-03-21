@@ -1,3 +1,4 @@
+import sys
 import os
 import time
 
@@ -13,21 +14,29 @@ num_sets = 3
 amount_of_time_pre_stretch = 20
 amount_of_time_stretch = 30
 amount_of_time_rest = 60 + 10
+amount_of_time_rest = 60
 
+# subtracting final rest
+total_time_minutes = (5 * 3 * (amount_of_time_pre_stretch + amount_of_time_stretch + amount_of_time_rest) - amount_of_time_rest) / 60.0
+print('Total time: {}'.format(total_time_minutes))
+
+# sys.exit()
 exercise_names = ['bridge', 'middle splits', 'front splits left', 'front splits right', 'pancake']
 
 say_something('Starting in 10 seconds')
-time.sleep(10)
+# time.sleep(10)
+# TODO print beep countdown
 
-for set_num in range(num_sets):
-    for exercise_num in range(num_exercises):
-        if exercise_num == 0 and set_num == 0:
-            continue
-
-        say_something('Exercise number {}. {} set number {}. Start pre stretch'.format(exercise_num, exercise_names[exercise_num], set_num))
+for set_num in range(1, num_sets + 1):
+    for exercise_num in range(1, num_exercises + 1):
+        say_something('Exercise number {}... {} set number {}. Start pre stretch'.format(exercise_num, exercise_names[exercise_num], set_num))
         time.sleep(amount_of_time_pre_stretch)
         say_something('Stretch {} seconds'.format(amount_of_time_stretch))
         time.sleep(amount_of_time_stretch)
+
+        if exercise_num == num_exercises and set_num == num_sets: 
+            break
         say_something('Rest {} seconds'.format(amount_of_time_rest))
         time.sleep(amount_of_time_rest)
 
+say_something('We are done. Finito')
